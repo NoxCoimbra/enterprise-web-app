@@ -13,14 +13,15 @@ import BsHeart from '@meronex/icons/bs/BsHeart';
 import AiOutlineSetting from '@meronex/icons/ai/AiOutlineSetting';
 import BsGearWide from '@meronex/icons/bs/BsGearWide';
 
-export default function Sidebar({ opened = false }) {
+export default function Sidebar({ opened = false, ...props } ) {
   const className = cx(
     "fixed z-10 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75",
     { "hidden": !opened }
   );
 
+  const selectedPage = props.selectedPage;
 
-
+  console.log(selectedPage)
   return (
     <aside id="sidebar" className={className} >
       <div className="relative flex-1 flex flex-col min-h-0 bg-white pl-5">
@@ -30,7 +31,7 @@ export default function Sidebar({ opened = false }) {
               <li>
                 <Link
                   href="/app/users"
-                  className="text-xs text-gray-900 font-light hover:bg-greenSqill-200 flex items-center group px-5 py-3 pl-10">
+                  className={`text-xs font-light text-gray-900  hover:bg-greenSqill-200 flex items-center group px-5 py-3 pl-10 ${selectedPage=="cockpit" ? 'bg-greenSqill-500' : ''}`}>
 
                   <BsHouseDoor className="text-gray-900" />
                   <span className="ml-3 flex-1 whitespace-nowrap"> Cockpit </span>
@@ -40,7 +41,7 @@ export default function Sidebar({ opened = false }) {
               <li>
                 <Link
                   href="/app/send2sqill"
-                  className="text-xs font-light text-gray-900  hover:bg-greenSqill-200 flex items-center group px-5 py-3 pl-10">
+                  className={`text-xs font-light text-gray-900  hover:bg-greenSqill-200 flex items-center group px-5 py-3 pl-10 ${selectedPage=="video&image" ? 'bg-greenSqill-500' : ''}`}>
 
                   <BsUpload className="text-gray-900" />
                   <span className="ml-3 flex-1 whitespace-nowrap">Video & Image</span>
@@ -51,29 +52,28 @@ export default function Sidebar({ opened = false }) {
               <li>
                 <Link
                   href="/app/curated_database"
-                  className="text-xs text-gray-900 font-light hover:bg-greenSqill-200 flex items-center group px-5 py-3 pl-10">
+                  className={`text-xs text-gray-900 font-light hover:bg-greenSqill-200 flex items-center group px-5 py-3 pl-10 ${selectedPage=="inspiration" ? 'bg-greenSqill-500' : ''}`}>
 
                   <BsHeart className="text-gray-900" />
                   <span className="ml-3 flex-1 whitespace-nowrap">Inspiration</span>
 
                 </Link>
               </li>
-
               <li>
                 <Link
-                  href="/app/sponsors"
-                  className="text-xs text-gray-900 font-light hover:bg-greenSqill-200 flex items-center group px-5 py-3 pl-10" >
-
-                  <MdcTagOutline className="text-gray-900" />
-                  <span className="ml-3 flex-1 whitespace-nowrap">Sponsors</span>
-
+                    href="/app/advertisers"
+                    className= {`text-xs text-gray-900 font-light hover:bg-greenSqill-200 flex items-center group px-5 py-3 pl-10 ${selectedPage=="advertisers" ? 'bg-greenSqill-500' : ''}`} >
+                    <MdcTagOutline className="text-gray-900" />
+                    <span className="ml-3 flex-1 whitespace-nowrap">Advertisers</span>
+                
                 </Link>
-              </li>
 
+
+              </li>
               <li>
                 <Link
                   href="/app/settings"
-                  className="text-xs text-gray-900  font-light hover:bg-greenSqill-200 flex items-center group px-5 py-3 pl-10"
+                  className={`text-xs text-gray-900  font-light hover:bg-greenSqill-200 flex items-center group px-5 py-3 pl-10 ${selectedPage=="settings" ? 'bg-greenSqill-500' : ''}`}
                 >
 
                   <AiOutlineSetting className="text-gray-900" />
@@ -81,6 +81,19 @@ export default function Sidebar({ opened = false }) {
 
                 </Link>
               </li>
+
+              <li>
+                <Link
+                  href="/app/sponsors"
+                  className={`text-xs text-gray-900 font-light hover:bg-greenSqill-200 flex items-center group px-5 py-3 pl-10 ${selectedPage=="sponsors" ? 'bg-greenSqill-500' : ''}`} >
+
+                  <MdcTagOutline className="text-gray-900" />
+                  <span className="ml-3 flex-1 whitespace-nowrap">Sponsors</span>
+
+                </Link>
+              </li>
+
+             
             </ul>
           </div>
         </div>
